@@ -37,8 +37,18 @@
 	List<PersonVo> personList = phoneDao.getPersonList();
 	System.out.println(personList);
 	
+	
+	
+	
+	
+	
+	response.sendRedirect("./list.jsp");
+	
+	
 %>
 
+
+<--
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,3 +81,4 @@
 	<%} %>
 </body>
 </html>
+-->

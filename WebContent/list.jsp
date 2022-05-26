@@ -31,15 +31,15 @@
 	<%for(int i=0; i<personList.size(); i++){ %>
 		<table border="1">
 			<tr>
-				<td>이름(name)</td>
+				<td>*이름(name)</td>
 				<td><%=personList.get(i).getName() %></td>
 			</tr>
 			<tr>
-				<td>핸드폰(hp)</td>
+				<td>*핸드폰(hp)</td>
 				<td><%=personList.get(i).getHp() %></td>
 			</tr>
 			<tr>
-				<td>회사(company)</td>
+				<td>*회사(company)</td>
 				<td><%=personList.get(i).getCompany() %></td>
 			</tr>
 		</table>
