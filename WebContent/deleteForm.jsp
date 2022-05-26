@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ page import = "java.util.List" %>
 <%@ page import="com.javaex.dao.PhoneDao" %>
 <%@ page import="com.javaex.vo.PersonVo" %>
@@ -12,9 +11,6 @@
 
 %>
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,12 +19,12 @@
 </head>
 <body>
 	<h1>전화번호부</h1>
-	<h2>리스트</h2>
+	<h2>삭제폼</h2>
+	<p>
+		삭제할 항목의 "삭제" 버튼을 클릭하세요!
+	</p>
 	
-	<p>입력한 정보 내역입니다.</p>
-	
-	
-	<%for(int i=0; i<personList.size(); i++){ %>
+		<%for(int i=0; i<personList.size(); i++){ %>
 		<table border="1">
 			<tr>
 				<td>*이름(name)</td>
@@ -42,14 +38,18 @@
 				<td>*회사(company)</td>
 				<td><%=personList.get(i).getCompany() %></td>
 			</tr>
+			<tr>
+				<td>삭제?</td>
+				<td>
+					<form action="./delete.jsp" method="get">
+						<button type="submit" name="personId" value=<%=personList.get(i).getPersonId() %>>삭제</button>
+					</form>
+					
+				</td>
+			</tr>
 		</table>
 		<br>
 	<%} %>
-	
-	<a href="./writeForm.jsp">추가번호 등록</a><br>
-	<a href="./deleteForm.jsp">등록내역 삭제</a><br>
-	<a href="./updateForm.jsp">등록내역 수정</a>
-	
 	
 </body>
 </html>
