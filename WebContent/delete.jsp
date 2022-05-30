@@ -5,27 +5,17 @@
 
 <%@ page import="java.util.List" %>
 
-<%
-	//파라미터에서 값 꺼내오기
-	int personId = Integer.parseInt(request.getParameter("personId"));
-
-	//Person 객체만들기
-	PersonVo personVo = new PersonVo(personId);
-	System.out.println(personVo);
+<%	
+	//파라미터에서 id값 꺼내오기
+	int id = Integer.parseInt(request.getParameter("id"));
+	//System.out.println(id);
 	
-	//PhoneDao 객체만들기
+	//데이터 삭제하기
 	PhoneDao phoneDao = new PhoneDao();
-	
-	//PhoneDao의 personInsert()를 이용해서 저장하기
-	int count = phoneDao.personDelete(personId);
+	int count = phoneDao.personDelete(id);
 	System.out.println(count);
 	
-	//리스트 가져와서 html 섞어놓는다
-	List<PersonVo> personList = phoneDao.getPersonList();
-	System.out.println(personList);
-	
-	
+	//응답 리다이렉트
 	response.sendRedirect("./list.jsp");
-	
 	
 %>

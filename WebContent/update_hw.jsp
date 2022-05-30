@@ -7,20 +7,28 @@
 
 <%
 	//파라미터에서 값 꺼내오기
-	int id = Integer.parseInt(request.getParameter("id"));
 	String name = request.getParameter("name");
 	String hp = request.getParameter("hp");
 	String company = request.getParameter("company");
+	int personId = Integer.parseInt(request.getParameter("personId"));
 	
-	//PersonVo 만들기
-	PersonVo personVo = new PersonVo(id, name, hp, company);
+	//Person 객체만들기
+	PersonVo personVo = new PersonVo(personId, name, hp, company);
 	System.out.println(personVo);
 	
-	
-	//PhoneDao personUpdate()로 수정하기
+	//PhoneDao 객체만들기
 	PhoneDao phoneDao = new PhoneDao();
-	int count = phoneDao.personUpdate(personVo);
+	
+	//PhoneDao의 personInsert()를 이용해서 저장하기
+	int count = phoneDao.personInsert(personVo);
 	System.out.println(count);
+	
+	
+	//리스트 가져와서 html 섞어놓는다
+	List<PersonVo> personList = phoneDao.getPersonList();
+	System.out.println(personList);
+	
+	
 	
 	
 	

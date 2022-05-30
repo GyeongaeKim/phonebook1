@@ -168,7 +168,7 @@ public class PhoneDao {
 			count = pstmt.executeUpdate(); // 쿼리문 실행
 
 			// 4.결과처리
-			// System.out.println(count + "건 수정되었습니다.");
+			System.out.println(count + "건 수정되었습니다.");
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
@@ -203,6 +203,50 @@ public class PhoneDao {
 
 		close();
 		return count;
+	}
+
+	public PersonVo getPerson(int personId) {
+		PersonVo personVo = null;
+
+		this.getConnection();
+
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			// SQL문 준비
+			String query = "";
+			query += " select  person_id, ";
+			query += "         name, ";
+			query += "         hp, ";
+			query += "         company ";
+			query += " from person ";
+			query += " where person_id = ? ";
+
+			// 바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, personId);
+
+			// 실행
+			rs = pstmt.executeQuery();
+
+			// 4.결과처리
+			while (rs.next()) {
+
+				int id = rs.getInt("person_id");
+				String name = rs.getString("name");
+				String hp = rs.getString("hp");
+				String company = rs.getString("company");
+
+				personVo = new PersonVo(id, name, hp, company);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		this.close();
+
+		return personVo;
 	}
 
 }
